@@ -2,7 +2,9 @@ image:
   name: registry.gitlab.com/gitlab-org/terraform-images/releases/terraform:1.0.3
 
 variables:
+  TF_MODULE: ${CI_PROJECT_DIR}
   TF_EXAMPLE: ${CI_PROJECT_DIR}/examples/test
+  TF_VAR_ENV: exampletest
 
 stages:         
   - validate
@@ -10,6 +12,7 @@ stages:
 validate-module: 
   stage: validate
   script:
+    - cd "${TF_MODULE}"
     - terraform init -backend=false
     - echo 'Validating Terraform files'
     - terraform validate
