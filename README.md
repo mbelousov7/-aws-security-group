@@ -1,30 +1,41 @@
+# tf-aws-security-group
 
 Terraform module to create AWS Security Group with rules.
 
 terrafrom config example:
 
 ```
+locals {
+  labels = merge(
+    { env = var.ENV },
+    { component = "componentName" },
+    var.labels
+  )
+}
+
 module "test_security_group" {
   source        = "../../"
   vpc_id        = var.vpc_config.vpc_id
   ingress_rules = var.security_group.ingress_rules
   egress_rules  = var.security_group.egress_rules
-  labels = merge(
-    { component = "componentName" },
-    var.labels
-  )
+  labels        = local.labels
 }
 ```
 more info see [examples/test](examples/test)
 
 
 terraform run example
+
 ```
 cd examples/test
+export TF_VAR_ENV="exampletest"
 terraform init
-terraform plan -var-file env/dev.tfvars
+terraform plan
 ``` 
 
+Terraform versions tested
+- 0.15.3
+- 1.1.8
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements

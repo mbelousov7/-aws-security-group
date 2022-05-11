@@ -1,5 +1,5 @@
 locals {
-  name = "${var.labels.prefix}-${var.labels.stack}-${var.labels.component}-security-group-${var.labels.env}"
+  name = "${var.labels.prefix}-${var.labels.stack}-${var.labels.component}-sg-${var.labels.env}"
 }
 
 resource "aws_security_group" "default" {
