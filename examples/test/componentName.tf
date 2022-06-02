@@ -15,7 +15,7 @@ variable "region" {
 
 variable "labels" {
   default = {
-    prefix = "a204558"
+    prefix = "myproject"
     stack  = "stackName"
   }
 }
